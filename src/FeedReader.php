@@ -35,6 +35,13 @@ class FeedReader
         // Setup the object
         $sp = $this->app->make(SimplePie::class);
 
+        $sp->set_curl_options(
+            array(
+                CURLOPT_SSL_VERIFYHOST => false,
+                CURLOPT_SSL_VERIFYPEER => false
+            )
+        );
+
         // Configure it
         if(($cache = $this->setupCacheDirectory($configuration)) !== false)
         {
